@@ -24,6 +24,7 @@ class SPACESHOOTER_API AAsteroide : public AActor
 	void OnOverlap(AActor* MyActor, AActor* OtherActor);
 
 	int VieA;
+	FVector DesiredLocation;
 
 	
 public:

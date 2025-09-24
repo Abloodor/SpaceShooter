@@ -29,17 +29,19 @@ void AAsteroide::BeginPlay()
 {
 	Super::BeginPlay();
 	VieA = FMath::RandRange(1,5);
-	
+	DesiredLocation = GetActorLocation();
+	DesiredLocation.Y = -1214;
+	MovementComponent->AddInputVector(DesiredLocation);
 }
 void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
 	if (Cast<AVaisseau>(OtherActor)) {
-		Cast<AVaisseau>(OtherActor)->VieV-=1;
 		Destroy();
+		Cast<AVaisseau>(OtherActor)->VieV-=1;
 	}
 	if (Cast<ATir>(OtherActor)) {
-		VieA-=1;
 		Cast<ATir>(OtherActor)->Destroy();
+		VieA-=1;
 	}
 }
 // Called every frame

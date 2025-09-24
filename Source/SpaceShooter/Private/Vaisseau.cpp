@@ -40,5 +40,55 @@ void AVaisseau::Tick(float DeltaTime)
 void AVaisseau::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	check(PlayerInputComponent);
+	
+    PlayerInputComponent->BindAxis("MoveForward", this, &AVaisseau::MoveForward);
+	PlayerInputComponent->BindAxis("MoveBackward", this, &AVaisseau::MoveBackward);
+	PlayerInputComponent->BindAxis("MoveLeft", this, &AVaisseau::MoveLeft);
+	PlayerInputComponent->BindAxis("MoveRight", this, &AVaisseau::MoveRight);
+	PlayerInputComponent->BindAction("MoveRight", IE_Pressed, this, &AVaisseau::OnSpaceKeyPressed);
 }
 
+void AVaisseau::MoveForward(float value)
+{
+	if (value != 0)
+	{
+		AddMovementInput(GetActorRightVector(), 1.0f);
+	}
+
+}void AVaisseau::MoveBackward(float value)
+{
+	if (value != 0){
+		AddMovementInput(GetActorRightVector(), -1.0f);
+	}
+}
+void AVaisseau::MoveLeft(float value)
+{
+	if (value != 0)
+	{
+		AddMovementInput(GetActorForwardVector(), 1.0f);
+	}
+}
+void AVaisseau::MoveRight(float value)
+{
+	if (value != 0)
+	{
+		AddMovementInput(GetActorForwardVector(), -1.0f);
+	}
+}
+void AVaisseau::OnSpaceKeyPressed()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Touche Espace pressée - Avancer"));
+	SpawnObject();
+}
+
+
+void AVaisseau::SpawnObject()
+{
+	FVector SpawnLocation = GetActorLocation();
+	SpawnLocation.X += 65;
+	ATir* SpawnedActor = GetWorld()->SpawnActor<ATir>(ActorToSpawnClass, SpawnLocation, FRotator(0, 0, 0));
+	UPrimitiveComponent* SpawnedComponent = Cast<UPrimitiveComponent>(SpawnedActor->GetRootComponent());
+	SpawnedComponent->SetSimulatePhysics(true);
+}

@@ -20,13 +20,24 @@ class SPACESHOOTER_API AVaisseau : public APawn
 	UPROPERTY(Category = Pawn, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UPawnMovementComponent* MovementComponent;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
-	//TSubclassOf<ATir> ActorToSpawnClass;
+	UPROPERTY(EditAnywhere, Category = "Spawner")
+	TSubclassOf<ATir> ActorToSpawnClass;
+
+	FVector NextPosition;
+	int MaxY;
+	int MinY;
+	int MaxX;
+	int MinX;
+	
 
 public:
 	// Sets default values for this pawn's properties
 	AVaisseau();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int VieV;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Score;
 
 protected:
 	// Called when the game starts or when spawned
@@ -38,4 +49,10 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void MoveForward(float value);
+	void MoveBackward(float value);
+	void MoveLeft(float value);
+	void MoveRight(float value);
+	void OnSpaceKeyPressed();
+	void SpawnObject();
 };

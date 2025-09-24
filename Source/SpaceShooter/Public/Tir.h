@@ -17,6 +17,11 @@ class SPACESHOOTER_API ATir : public AActor
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* StaticMesh;
 
+	UPROPERTY(Category = Pawn, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UPawnMovementComponent* MovementComponent;
+
+	FVector DesiredLocation;
+
 public:
 	// Sets default values for this actor's properties
 	ATir();
@@ -24,6 +29,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	FVector Seek(FVector TargetLocation);
 
 public:
 	// Called every frame
