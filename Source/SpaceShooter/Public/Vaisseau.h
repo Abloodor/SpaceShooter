@@ -19,7 +19,7 @@ class SPACESHOOTER_API AVaisseau : public APawn
 
 	UPROPERTY(Category = Pawn, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UPawnMovementComponent* MovementComponent;
-
+	
 	FVector NextPosition;
 	int MaxY;
 	int MinY;

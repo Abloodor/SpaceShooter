@@ -30,6 +30,7 @@ void AAsteroide::BeginPlay()
 	Super::BeginPlay();
 	VieA = FMath::RandRange(1,5);
 	VieMax = VieA;
+	SetActorScale3D(GetActorScale()+VieMax);
 }
 void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {

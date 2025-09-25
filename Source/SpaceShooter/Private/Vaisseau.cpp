@@ -40,6 +40,10 @@ void AVaisseau::BeginPlay()
 void AVaisseau::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	if (VieV <= 0)
+	{
+		Restart();
+	}
 }
 
 // Called to bind functionality to input
@@ -60,27 +64,27 @@ void AVaisseau::MoveForward(float value)
 {
 	if (value != 0)
 	{
-		AddMovementInput(GetActorRightVector(), 1.0f);
+		AddActorWorldOffset(FVector(0.0f, 10.0f, 0.0f), true);
 	}
 
 }void AVaisseau::MoveBackward(float value)
 {
 	if (value != 0){
-		AddMovementInput(GetActorRightVector(), -1.0f);
+		AddActorWorldOffset(FVector(0.0f, -10.0f, 0.0f), true);
 	}
 }
 void AVaisseau::MoveLeft(float value)
 {
 	if (value != 0)
 	{
-		AddMovementInput(GetActorForwardVector(), 1.0f);
+		AddActorWorldOffset(FVector(10.0f, 0.0f, 0.0f), true);
 	}
 }
 void AVaisseau::MoveRight(float value)
 {
 	if (value != 0)
 	{
-		AddMovementInput(GetActorForwardVector(), -1.0f);
+		AddActorWorldOffset(FVector(-10.0f,0.0f, 0.0f), true);
 	}
 }
 void AVaisseau::OnSpaceKeyPressed()
