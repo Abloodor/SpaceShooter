@@ -38,6 +38,7 @@ class SPACESHOOTER_API AVaisseau : public APawn
 	int MinX = -1730;
 	int MinY = -1000;
 	int MaxY = 890;
+	float Timer;
 
 public:
 	// Sets default values for this pawn's properties

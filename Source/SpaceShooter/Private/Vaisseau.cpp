@@ -41,6 +41,7 @@ void AVaisseau::BeginPlay()
 void AVaisseau::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	Timer += DeltaTime;
 	if (VieV <= 0)
 	{
 		Restart();
@@ -111,7 +112,10 @@ void AVaisseau::OnSpaceKeyPressed()
 	{
 		UGameplayStatics::PlaySoundAtLocation(GetWorld(), SB_Tir, GetActorLocation());
 	}*/
-	SpawnObject();
+	if (Timer>=1.0f)
+	{
+		SpawnObject();
+	}
 }
 
 
