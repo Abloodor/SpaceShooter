@@ -3,6 +3,7 @@
 
 #include "SpaceShooter/Public/Tir.h"
 
+#include "Vaisseau.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 
