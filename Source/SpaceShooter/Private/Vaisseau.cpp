@@ -5,6 +5,7 @@
 
 #include "Components/SphereComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -64,32 +65,52 @@ void AVaisseau::MoveForward(float value)
 {
 	if (value != 0)
 	{
-		AddActorWorldOffset(FVector(0.0f, 10.0f, 0.0f), true);
+		if (GetActorLocation().Y<=MaxY)
+		{
+			AddActorWorldOffset(FVector(0.0f, 10.0f, 0.0f), true);
+		}
 	}
 
 }void AVaisseau::MoveBackward(float value)
 {
 	if (value != 0){
-		AddActorWorldOffset(FVector(0.0f, -10.0f, 0.0f), true);
+		if (GetActorLocation().Y>=MinY)
+		{
+			AddActorWorldOffset(FVector(0.0f, -10.0f, 0.0f), true);
+		}
 	}
 }
 void AVaisseau::MoveLeft(float value)
 {
 	if (value != 0)
 	{
-		AddActorWorldOffset(FVector(10.0f, 0.0f, 0.0f), true);
+		if (GetActorLocation().X<=MaxX)
+		{
+			AddActorWorldOffset(FVector(10.0f, 0.0f, 0.0f), true);
+		}
 	}
 }
 void AVaisseau::MoveRight(float value)
 {
 	if (value != 0)
 	{
-		AddActorWorldOffset(FVector(-10.0f,0.0f, 0.0f), true);
+		if (GetActorLocation().X>=MinX)
+		{
+			AddActorWorldOffset(FVector(-10.0f,0.0f, 0.0f), true);
+		}
 	}
 }
 void AVaisseau::OnSpaceKeyPressed()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Touche Espace pressée"));
+	/*if (NS_Tir)
+	{
+		FVector SpawnLocation = GetActorLocation();
+		SpawnLocation.Y += 65;
+	}
+	if (SB_Tir)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), SB_Tir, GetActorLocation());
+	}*/
 	SpawnObject();
 }
 

@@ -11,6 +11,13 @@ UCLASS()
 class SPACESHOOTER_API AVaisseau : public APawn
 {
 	GENERATED_BODY()
+	
+	/*UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class UNiagaraSystem;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class USoundBase;*/
+	
 	UPROPERTY(VisibleAnywhere)
 	class USphereComponent* BoxCollision;
 
@@ -19,13 +26,18 @@ class SPACESHOOTER_API AVaisseau : public APawn
 
 	UPROPERTY(Category = Pawn, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UPawnMovementComponent* MovementComponent;
+
+	/*UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UNiagaraSystem* NS_Tir;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	USoundBase* SB_Tir;*/
 	
 	FVector NextPosition;
-	int MaxY;
-	int MinY;
-	int MaxX;
-	int MinX;
-	
+	int MaxX = 1850;
+	int MinX = -1730;
+	int MinY = -1000;
+	int MaxY = 890;
 
 public:
 	// Sets default values for this pawn's properties

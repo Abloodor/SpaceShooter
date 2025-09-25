@@ -3,17 +3,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Asteroide.h"
 #include "GameFramework/Actor.h"
-#include "AsteroidInvocator.generated.h"
+#include "AsteroideInvocateur.generated.h"
 
 UCLASS()
-class SPACESHOOTER_API AAsteroidInvocator : public AActor
+class SPACESHOOTER_API AAsteroideInvocateur : public AActor
 {
 	GENERATED_BODY()
 
+	int MaxX = 1840;
+	int MinX = -1730;
+	int Y = 1500;
+	int Z = 72;
+
 public:
 	// Sets default values for this actor's properties
-	AAsteroidInvocator();
+	AAsteroideInvocateur();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
+	TSubclassOf<AAsteroide> ActorToSpawnClass;
+	void SpawnObject(FVector Spawn);
 
 protected:
 	// Called when the game starts or when spawned
