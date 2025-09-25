@@ -14,7 +14,8 @@ class SPACESHOOTER_API AAsteroideInvocateur : public AActor
 
 	int MaxX = 1840;
 	int MinX = -1730;
-	int Y = 1500;
+	int MaxY = 1500;
+	int MinY = -1000;
 	int Z = 182;
 	float Timer;
 
@@ -24,6 +25,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
 	TSubclassOf<AAsteroide> ActorToSpawnClass;
 	void SpawnObject(FVector Spawn);
+	int Invoc;
 
 protected:
 	// Called when the game starts or when spawned

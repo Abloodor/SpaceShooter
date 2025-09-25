@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Asteroide.generated.h"
 
 
@@ -24,7 +25,11 @@ class SPACESHOOTER_API AAsteroide : public AActor
 	UFUNCTION()
 	void OnOverlap(AActor* MyActor, AActor* OtherActor);
 
+	UFUNCTION()
+	void PlayDestructionParticles();
+
 	TArray<AActor*> Vaisseaux;
+	TArray<AActor*> Invocateurs;
 	int VieA;
 	int VieMax;
 	FVector VectorA;
@@ -33,6 +38,8 @@ class SPACESHOOTER_API AAsteroide : public AActor
 public:
 	// Sets default values for this actor's properties
 	AAsteroide();
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="effect")
+	UNiagaraSystem* DestructionParticles;
 
 protected:
 	// Called when the game starts or when spawned

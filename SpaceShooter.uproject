@@ -4,6 +4,10 @@
 	"Category": "",
 	"Description": "",
 	"Modules": [
+        {
+            "Name": "Niagara",
+            "Type": "Runtime"
+        },
 		{
 			"Name": "SpaceShooter",
 			"Type": "Runtime",

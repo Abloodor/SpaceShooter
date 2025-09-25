@@ -3,11 +3,15 @@
 
 #include "SpaceShooter/Public/Asteroide.h"
 
+#include "AsteroideInvocateur.h"
 #include "Components/SphereComponent.h"
 #include "SpaceShooter/Public/Tir.h"
 #include "SpaceShooter/Public/Vaisseau.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "Kismet/GameplayStatics.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
+
 
 
 // Sets default values
@@ -36,11 +40,39 @@ void AAsteroide::BeginPlay()
 	this->OnActorBeginOverlap.AddDynamic(this, &AAsteroide::OnOverlap);
 	SetActorScale3D(GetActorScale()+VieMax);
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AVaisseau::StaticClass(), Vaisseaux);
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AAsteroideInvocateur::StaticClass(), Invocateurs);
+	if (Cast<AAsteroideInvocateur>(Invocateurs[0])->Invoc==0)
+	{
+		VectorA = FVector(1.0f * (6-VieMax), 0.0f, 0.0f);
+	}
+	if (Cast<AAsteroideInvocateur>(Invocateurs[0])->Invoc==1)
+	{
+		VectorA = FVector(0.0f, -1.0f * (6-VieMax), 0.0f);
+	}
+	if (Cast<AAsteroideInvocateur>(Invocateurs[0])->Invoc==2)
+	{
+		VectorA = FVector(-1.0f * (6-VieMax), 0.0f, 0.0f);
+	}
 }
+
+void AAsteroide::PlayDestructionParticles()
+{
+	if (DestructionParticles)
+	{
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(
+			GetWorld(),
+			DestructionParticles,
+			GetActorLocation(),
+			FRotator::ZeroRotator
+			);
+	}
+	Destroy();
+}
+
 void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
 	if (Cast<AVaisseau>(OtherActor)) {
-		Destroy();
+		PlayDestructionParticles();
 		Cast<AVaisseau>(OtherActor)->VieV-=1;
 	}
 	if (Cast<ATir>(OtherActor)) {
@@ -52,15 +84,14 @@ void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 void AAsteroide::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	VectorA = FVector(0.0f, -1.0f * (6-VieMax), 0.0f);
 	AddActorWorldOffset(VectorA, true);
 	if (VieA <= 0)
 	{
 		Cast<AVaisseau>(Vaisseaux[0])->Score+=VieMax*100;
-		Destroy();
+		PlayDestructionParticles();
 	}
-	if (GetActorLocation().Y<=-1500)
+	if (GetActorLocation().Y<=-1500 or GetActorLocation().Y>=1800 or GetActorLocation().X>=2000 or GetActorLocation().X<=-1730)
 	{
-		Destroy();
+		PlayDestructionParticles();
 	}
 }
