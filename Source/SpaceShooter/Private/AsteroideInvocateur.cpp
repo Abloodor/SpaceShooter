@@ -29,8 +29,14 @@ void AAsteroideInvocateur::BeginPlay()
 void AAsteroideInvocateur::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	FVector SpawnLocation = FVector(FMath::RandRange(MinX, MaxX),Y,Z);
-	SpawnObject(SpawnLocation);
+	
+	Timer += DeltaTime;
+	if (Timer>=3.0f)
+	{
+		FVector SpawnLocation = FVector(FMath::RandRange(MinX, MaxX),Y,Z);
+		SpawnObject(SpawnLocation);
+		Timer = 0.0f;
+	}
 }
 void AAsteroideInvocateur::SpawnObject(FVector Spawn)
 {

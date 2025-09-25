@@ -16,6 +16,7 @@ class SPACESHOOTER_API AAsteroideInvocateur : public AActor
 	int MinX = -1730;
 	int Y = 1500;
 	int Z = 200;
+	float Timer;
 
 public:
 	// Sets default values for this actor's properties

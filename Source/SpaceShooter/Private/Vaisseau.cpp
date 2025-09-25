@@ -115,6 +115,7 @@ void AVaisseau::OnSpaceKeyPressed()
 	if (Timer>=1.0f)
 	{
 		SpawnObject();
+		Timer=0.0f;
 	}
 }
 

@@ -33,7 +33,7 @@ void ATir::BeginPlay()
 void ATir::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	VectorT = FVector(0.0f, 2.0f, 0.0f);
+	VectorT = FVector(0.0f, 4.0f, 0.0f);
 	AddActorWorldOffset(VectorT, true);
 
 	if (GetActorLocation().Y>=1200)
