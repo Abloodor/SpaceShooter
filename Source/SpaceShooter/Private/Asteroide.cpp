@@ -30,8 +30,8 @@ void AAsteroide::BeginPlay()
 	Super::BeginPlay();
 	VieA = FMath::RandRange(1,5);
 	VieMax = VieA;
-	/*
-	SetActorScale3D(GetActorScale()+VieMax);*/
+	this->OnActorBeginOverlap.AddDynamic(this, &AAsteroide::OnOverlap);
+	SetActorScale3D(GetActorScale()+VieMax);
 }
 void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
@@ -52,6 +52,7 @@ void AAsteroide::Tick(float DeltaTime)
 	AddActorWorldOffset(VectorA, true);
 	if (VieA <= 0)
 	{
+		//Cast<AVaisseau>()->Score+=VieMax*100;
 		Destroy();
 	}
 	if (GetActorLocation().Y<=-1500)
@@ -59,4 +60,3 @@ void AAsteroide::Tick(float DeltaTime)
 		Destroy();
 	}
 }
-

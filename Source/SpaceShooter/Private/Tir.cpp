@@ -27,6 +27,7 @@ ATir::ATir()
 void ATir::BeginPlay()
 {
 	Super::BeginPlay();
+	
 }
 
 // Called every frame

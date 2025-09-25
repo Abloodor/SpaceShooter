@@ -103,15 +103,6 @@ void AVaisseau::MoveRight(float value)
 }
 void AVaisseau::OnSpaceKeyPressed()
 {
-	/*if (NS_Tir)
-	{
-		FVector SpawnLocation = GetActorLocation();
-		SpawnLocation.Y += 65;
-	}
-	if (SB_Tir)
-	{
-		UGameplayStatics::PlaySoundAtLocation(GetWorld(), SB_Tir, GetActorLocation());
-	}*/
 	if (Timer>=1.0f)
 	{
 		SpawnObject();
