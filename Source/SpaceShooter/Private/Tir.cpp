@@ -27,7 +27,6 @@ ATir::ATir()
 void ATir::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
@@ -36,7 +35,7 @@ void ATir::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	VectorT = FVector(0.0f, 8.0f, 0.0f);
 	AddActorWorldOffset(VectorT, true);
-
+	SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
 	if (GetActorLocation().Y>=1200)
 	{
 		Destroy();

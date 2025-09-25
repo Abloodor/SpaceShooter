@@ -114,7 +114,7 @@ void AVaisseau::OnSpaceKeyPressed()
 void AVaisseau::SpawnObject()
 {
 	FVector SpawnLocation = GetActorLocation();
-	SpawnLocation.Y += 65;
+	SpawnLocation.Y += 170;
 	ATir* SpawnedActor = GetWorld()->SpawnActor<ATir>(ActorToSpawnClass, SpawnLocation, FRotator(0, 0, 0));
 	UPrimitiveComponent* SpawnedComponent = Cast<UPrimitiveComponent>(SpawnedActor->GetRootComponent());
 	SpawnedComponent->SetSimulatePhysics(true);

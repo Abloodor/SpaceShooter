@@ -21,6 +21,7 @@ class SPACESHOOTER_API ATir : public AActor
 	UPawnMovementComponent* MovementComponent;
 
 	FVector VectorT;
+	
 
 public:
 	// Sets default values for this actor's properties
