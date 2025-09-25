@@ -7,6 +7,7 @@
 #include "SpaceShooter/Public/Tir.h"
 #include "SpaceShooter/Public/Vaisseau.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -34,6 +35,7 @@ void AAsteroide::BeginPlay()
 	VieMax = VieA;
 	this->OnActorBeginOverlap.AddDynamic(this, &AAsteroide::OnOverlap);
 	SetActorScale3D(GetActorScale()+VieMax);
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AVaisseau::StaticClass(), Vaisseaux);
 }
 void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
@@ -54,7 +56,7 @@ void AAsteroide::Tick(float DeltaTime)
 	AddActorWorldOffset(VectorA, true);
 	if (VieA <= 0)
 	{
-		//Cast<AVaisseau>()->Score+=VieMax*100;
+		Cast<AVaisseau>(Vaisseaux[0])->Score+=VieMax*100;
 		Destroy();
 	}
 	if (GetActorLocation().Y<=-1500)

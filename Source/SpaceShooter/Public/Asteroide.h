@@ -24,6 +24,7 @@ class SPACESHOOTER_API AAsteroide : public AActor
 	UFUNCTION()
 	void OnOverlap(AActor* MyActor, AActor* OtherActor);
 
+	TArray<AActor*> Vaisseaux;
 	int VieA;
 	int VieMax;
 	FVector VectorA;
