@@ -20,7 +20,7 @@ class SPACESHOOTER_API ATir : public AActor
 	UPROPERTY(Category = Pawn, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UPawnMovementComponent* MovementComponent;
 
-	FVector DesiredLocation;
+	FVector VectorT;
 
 public:
 	// Sets default values for this actor's properties
@@ -29,7 +29,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	FVector Seek(FVector TargetLocation);
 
 public:
 	// Called every frame

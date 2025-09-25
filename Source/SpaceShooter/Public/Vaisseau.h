@@ -20,9 +20,6 @@ class SPACESHOOTER_API AVaisseau : public APawn
 	UPROPERTY(Category = Pawn, VisibleDefaultsOnly, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UPawnMovementComponent* MovementComponent;
 
-	UPROPERTY(EditAnywhere, Category = "Spawner")
-	TSubclassOf<ATir> ActorToSpawnClass;
-
 	FVector NextPosition;
 	int MaxY;
 	int MinY;
@@ -39,6 +36,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Score;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
+	TSubclassOf<ATir> ActorToSpawnClass;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

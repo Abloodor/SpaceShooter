@@ -29,9 +29,7 @@ void AAsteroide::BeginPlay()
 {
 	Super::BeginPlay();
 	VieA = FMath::RandRange(1,5);
-	DesiredLocation = GetActorLocation();
-	DesiredLocation.Y = -1214;
-	MovementComponent->AddInputVector(DesiredLocation);
+	VieMax = VieA;
 }
 void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
@@ -48,7 +46,13 @@ void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 void AAsteroide::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	VectorA = FVector(0.0f, -1.0f * (6-VieMax), 0.0f);
+	AddActorWorldOffset(VectorA, true);
 	if (VieA <= 0)
+	{
+		Destroy();
+	}
+	if (GetActorLocation().Y<=-1500)
 	{
 		Destroy();
 	}

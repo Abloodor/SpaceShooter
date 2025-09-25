@@ -20,6 +20,12 @@ AVaisseau::AVaisseau()
 
 	MovementComponent =  CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>("MovementComponent");
 	MovementComponent->UpdatedComponent = BoxCollision;
+
+	ConstructorHelpers::FClassFinder<AActor> ActorToSpawn (TEXT("/Game/Jeu/BP_Tir"));
+	if (ActorToSpawn.Succeeded())
+	{
+		ActorToSpawnClass = ActorToSpawn.Class;
+	}
 }
 
 // Called when the game starts or when spawned
@@ -47,7 +53,7 @@ void AVaisseau::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveBackward", this, &AVaisseau::MoveBackward);
 	PlayerInputComponent->BindAxis("MoveLeft", this, &AVaisseau::MoveLeft);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AVaisseau::MoveRight);
-	PlayerInputComponent->BindAction("MoveRight", IE_Pressed, this, &AVaisseau::OnSpaceKeyPressed);
+	PlayerInputComponent->BindAction("Tirer", IE_Pressed, this, &AVaisseau::OnSpaceKeyPressed);
 }
 
 void AVaisseau::MoveForward(float value)
@@ -79,7 +85,7 @@ void AVaisseau::MoveRight(float value)
 }
 void AVaisseau::OnSpaceKeyPressed()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Touche Espace pressée - Avancer"));
+	UE_LOG(LogTemp, Warning, TEXT("Touche Espace pressée"));
 	SpawnObject();
 }
 
@@ -87,7 +93,7 @@ void AVaisseau::OnSpaceKeyPressed()
 void AVaisseau::SpawnObject()
 {
 	FVector SpawnLocation = GetActorLocation();
-	SpawnLocation.X += 65;
+	SpawnLocation.Y += 65;
 	ATir* SpawnedActor = GetWorld()->SpawnActor<ATir>(ActorToSpawnClass, SpawnLocation, FRotator(0, 0, 0));
 	UPrimitiveComponent* SpawnedComponent = Cast<UPrimitiveComponent>(SpawnedActor->GetRootComponent());
 	SpawnedComponent->SetSimulatePhysics(true);
