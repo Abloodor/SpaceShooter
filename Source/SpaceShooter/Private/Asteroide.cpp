@@ -22,6 +22,8 @@ AAsteroide::AAsteroide()
 
 	MovementComponent =  CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>("MovementComponent");
 	MovementComponent->UpdatedComponent = BoxCollision;
+
+	
 }
 
 // Called when the game starts or when spawned

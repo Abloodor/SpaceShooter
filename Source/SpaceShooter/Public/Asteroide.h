@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Asteroide.generated.h"
 
+
 UCLASS()
 class SPACESHOOTER_API AAsteroide : public AActor
 {
