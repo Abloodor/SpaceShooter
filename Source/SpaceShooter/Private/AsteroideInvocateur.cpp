@@ -31,7 +31,7 @@ void AAsteroideInvocateur::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 	Timer += DeltaTime;
-	if (Timer>=3.0f)
+	if (Timer>=2.0f)
 	{
 		FVector SpawnLocation = FVector(FMath::RandRange(MinX, MaxX),Y,Z);
 		SpawnObject(SpawnLocation);
