@@ -23,6 +23,8 @@ class SPACESHOOTER_API AVaisseau : public APawn
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawner")
 	//TSubclassOf<ATir> ActorToSpawnClass;
 
+	float Timer;
+
 public:
 	// Sets default values for this pawn's properties
 	AVaisseau();

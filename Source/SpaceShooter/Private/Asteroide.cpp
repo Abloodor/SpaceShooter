@@ -19,9 +19,10 @@ AAsteroide::AAsteroide()
 
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>("StaticMesh");
 	StaticMesh->SetupAttachment(BoxCollision);
-
+	
 	MovementComponent =  CreateDefaultSubobject<UPawnMovementComponent, UFloatingPawnMovement>("MovementComponent");
 	MovementComponent->UpdatedComponent = BoxCollision;
+	
 }
 
 // Called when the game starts or when spawned
@@ -29,7 +30,18 @@ void AAsteroide::BeginPlay()
 {
 	Super::BeginPlay();
 	VieA = FMath::RandRange(1,5);
+<<<<<<< Updated upstream
 	
+=======
+	VieMax = VieA;
+	SetActorScale3D(GetActorScale()+VieMax+2);
+	USphereComponent* SphereComponent = Cast<USphereComponent>(GetComponentByClass(USphereComponent::StaticClass()));
+	if (SphereComponent)
+	{
+		FVector CurrentScale = GetActorScale();
+		SphereComponent->SetSphereRadius(SphereComponent->GetUnscaledSphereRadius() * FMath::Max(CurrentScale.X, FMath::Max(CurrentScale.Y, CurrentScale.Z)));
+	}
+>>>>>>> Stashed changes
 }
 void AAsteroide::OnOverlap(AActor* MyActor, AActor* OtherActor)
 {
