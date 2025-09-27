@@ -90,7 +90,7 @@ void AAsteroide::Tick(float DeltaTime)
 		Cast<AVaisseau>(Vaisseaux[0])->Score+=VieMax*100;
 		PlayDestructionParticles();
 	}
-	if (GetActorLocation().Y<=-1500 or GetActorLocation().Y>=1800 or GetActorLocation().X>=2000 or GetActorLocation().X<=-1730)
+	if (GetActorLocation().Y<=-1500 or GetActorLocation().Y>=1800 or GetActorLocation().X>=2000 or GetActorLocation().X<=-1900)
 	{
 		PlayDestructionParticles();
 	}
